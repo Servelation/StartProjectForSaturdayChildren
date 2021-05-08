@@ -14,6 +14,8 @@ def collide(Sprite1 , Sprite2):
     else:
         return False
 
+pygame.init()
+font1 = pygame.font.Font(None,45)
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 800
 clock = pygame.time.Clock()
@@ -40,11 +42,27 @@ while game:
     keys = pygame.key.get_pressed()
     player.update(keys)
 
+    firetimer+=1
+    if firetimer==60:
+        firetimer=0
+        fire = Fireball(random.randint(0, SCREEN_WIDTH),
+                        -100, -90)
+        fire.speedY = 5
+        fireballs.append(fire)
 
     for f in fireballs:
         f.update()
         f.y += f.speedY
+        f.x += f.speedX
+        if collide(f,player):
+            player.hp-=10
+            fireballs.remove(f)
+        if f.y>SCREEN_HEIGHT and f in fireballs:
+            fireballs.remove(f)
 
+    text_hp = font1.render( str(player.hp),
+                           True,
+                           (0, 0, 0))
 
     window.fill( (255,255,255) )# заливаем окно белым цветом
     window.blit(zemlya.image,
@@ -54,6 +72,9 @@ while game:
     for fire in fireballs:
         window.blit(fire.image,
                     (fire.x,fire.y) )
+    window.blit(text_hp,
+                (0,0))
+
     clock.tick(60)
     pygame.display.update()
 pygame.quit()

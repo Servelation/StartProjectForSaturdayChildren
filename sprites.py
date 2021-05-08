@@ -15,6 +15,7 @@ class Sprite:
 class Player(Sprite):
     def __init__(self, x, y, img):
         Sprite.__init__(self, x, y, img)
+        self.hp = 100
         self.speedX = 5
         self.dir = 'left'
         self.cadrsR = [pygame.image.load(r'images/player/r1.png'),
@@ -92,3 +93,4 @@ class Fireball(Sprite):
             self.image = self.cadrs[self.n_cadr]
             self.n_cadr = 0 if self.n_cadr == len(self.cadrs)-1 else self.n_cadr + 1
             self.counter = 0
+
