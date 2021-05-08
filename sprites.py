@@ -17,6 +17,8 @@ class Player(Sprite):
         Sprite.__init__(self, x, y, img)
         self.hp = 100
         self.speedX = 5
+        self.is_in_air = False
+        self.jumppower= -18
         self.dir = 'left'
         self.cadrsR = [pygame.image.load(r'images/player/r1.png'),
                        pygame.image.load(r'images/player/r2.png'),
