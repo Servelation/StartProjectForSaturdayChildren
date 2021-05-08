@@ -74,8 +74,8 @@ class Fireball(Sprite):
         #Цикл, который в переменную i закидывает числа от 0 до размера списка кадров(до 5)
         for i in range(len(self.cadrs)):
             img = pygame.transform.scale(self.cadrs[i], [
-                int(  self.cadrs[i].get_width()*0.3  ),
-                int(  self.cadrs[i].get_height()*0.3 )
+                int(  self.cadrs[i].get_width()*0.2  ),
+                int(  self.cadrs[i].get_height()*0.2 )
             ])
             img = pygame.transform.rotate(img,angle)
             self.cadrs[i]= img
